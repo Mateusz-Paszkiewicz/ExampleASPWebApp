@@ -25,18 +25,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].czyButelka)
             </th>
-            <th><label><input type="checkbox" id="sort" name="Sort ascending" value="1"> Posortuj cenę </label></th>
+            <th><label><input runat="server" type="text" id="filter" name="filterString"> Filtruj Nazwę </label></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@Model.Beer.DefaultView.Sort ="Price ASC";
-@foreach (var item in Model.Beer) {
-        <tr>
+        @foreach (var item in Model.Beer.Where(n => n.Type == "Ciemne"))
+        {
+        <tr class="item">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
+            <td class="price">
                 @Html.DisplayFor(modelItem => item.price)
             </td>
             <td>
