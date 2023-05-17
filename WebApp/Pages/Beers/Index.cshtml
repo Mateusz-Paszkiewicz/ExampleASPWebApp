@@ -25,10 +25,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].czyButelka)
             </th>
+            <th><label><input type="checkbox" id="sort" name="Sort ascending" value="1"> Posortuj cenę </label></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+@Model.Beer.DefaultView.Sort ="Price ASC";
 @foreach (var item in Model.Beer) {
         <tr>
             <td>
