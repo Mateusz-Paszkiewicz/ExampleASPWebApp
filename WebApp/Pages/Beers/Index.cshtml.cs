@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebApp.Data;
 using WebApp.Models;
@@ -23,10 +24,22 @@ namespace WebApp.Pages.Beers
 
         public async Task OnGetAsync()
         {
-            if (_context.Beer != null)
+            var beers = from s in _context.Beer
+                         select s;
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Beer = await _context.Beer.ToListAsync();
+                beers = beers.Where(s => s.Type.Contains(SearchString));
             }
+
+            Beer = await beers.ToListAsync();
         }
+
+        [BindProperty(SupportsGet = true)]
+        public string? SearchString { get; set; }
+
+        public SelectList? Types { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string? BeerType { get; set; }
     }
 }

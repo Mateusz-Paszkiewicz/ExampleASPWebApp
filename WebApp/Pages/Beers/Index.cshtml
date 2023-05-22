@@ -21,16 +21,21 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].Type)
+                <form>
+                    <p>
+                        <input type="text" asp-for="SearchString" />
+                        <input type="submit" value="Filter" />
+                    </p>
+                </form>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].czyButelka)
             </th>
-            <th><label><input runat="server" type="text" id="filter" name="filterString"> Filtruj Nazwę </label></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Beer.Where(n => n.Type == "Ciemne"))
+        @foreach (var item in Model.Beer)
         {
         <tr class="item">
             <td>
