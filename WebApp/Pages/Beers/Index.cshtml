@@ -30,6 +30,18 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Beer[0].czyButelka)
+                <form id="bottleChoiceForm">
+                    <p>
+                        <fieldset>
+                            <input type="radio" id="anyBottle" name="BottleChoice" value="2" asp-for="bottleChoice" onchange="this.form.submit()">
+                            <label for="AnyBottleChoice">Dowolne</label><br>
+                            <input type="radio" id="bottle" name="BottleChoice" value="0" asp-for="bottleChoice" onchange="this.form.submit()">
+                            <label for="BottleChoice">Butelkowane</label><br>
+                            <input type="radio" id="nonBottle" name="BottleChoice" value="1" asp-for="bottleChoice" onchange="this.form.submit()">
+                            <label for="NonBottleChoice">Niebutelkowane</label>
+                        </fieldset>
+                    </p>
+                </form>
             </th>
             <th></th>
         </tr>

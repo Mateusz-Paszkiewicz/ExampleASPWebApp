@@ -31,11 +31,24 @@ namespace WebApp.Pages.Beers
                 beers = beers.Where(s => s.Type.Contains(SearchString));
             }
 
+            if(bottleChoice != 0)
+            {
+                if (bottleChoice == 1)
+                    beers = beers.Where(s => s.czyButelka == true);
+                else
+                {
+                    beers = beers.Where(s => s.czyButelka == false);
+                }
+            }
+
             Beer = await beers.ToListAsync();
         }
 
         [BindProperty(SupportsGet = true)]
         public string? SearchString { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public int bottleChoice { get; set; }
 
         public SelectList? Types { get; set; }
 
